@@ -60,15 +60,14 @@ span {
 }
 
 main {
-  max-width: 700px;
-  height: 100dvh;
-  margin: 0 auto;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.app {
+.app-menu {
+
   display: grid;
   align-items: center;
   background-color: var(--blue-light);
@@ -88,25 +87,22 @@ main {
   height: 4rem;
 }
 
-/* Inputs e select */
-#Artikelname,
-#amount,
-#Menge,
-select,
-#btnAdd {
-  height: 2rem;
-  border-radius: 2rem;
-}
 
-select {
-  width: 7.5rem;
-  text-align: center;
-}
 
 .menu-items {
   display: grid;
   grid-auto-flow: column;
+  align-items: center;
   gap: 1rem;
+
+  & p {
+    display: grid;
+    
+  }
+
+  & p:nth-child(5) {
+    align-self: end;
+  }
 }
 
 /* Botão de adicionar */
@@ -114,17 +110,7 @@ select {
   align-self: flex-end;
 }
 
-#btnAdd {
-  width: 12.5rem;
-  height: 2.5rem;
-  padding-inline: .5rem;
-  font-weight: 600;
-  background-color: var(--blue-noch-dark);
-  color: var(--white);
-  border: 1px solid white;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
+
 
 #btnAdd:hover {
   transform: scale(1.1);
@@ -150,37 +136,7 @@ select {
   border: 2px solid var(--blue-noch-dark);
 }
 
-/* Tabela com scroll e cabeçalho fixo */
-.scroll-wrapper {
-  max-height: 400px;
-  overflow-y: auto;
-  width: 100%;
-  border: 1px solid #ccc;
-    border-radius: 1rem;
-}
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-thead th {
-  position: sticky;
-  top: 0;
-  background-color: var(--blue-noch-dark);
-  color: var(--white);
-  z-index: 2;
-  border-bottom: 1px solid #ccc;
-  padding: 1rem;
-  font-weight: bold;
-}
-
-th,
-td {
-  border: 1px solid white;
-  padding: 0.8rem;
-}
 
 /* Botões de editar/deletar */
 .edit-delete {
@@ -255,18 +211,16 @@ td {
   max-height: 350px;
 }
 
-}
-
-@media (max-width: 400px) {
-  #list {
+ #list {
     max-height: 400px;
     overflow: auto;
     border-radius: 1rem;
   }
 
-  .app {
-    max-width: 330px;
-    display: block;
+  .app-menu {
+    
+    width: 100%;
+   
     padding: .2rem;
     margin-top: 2rem;
   }
@@ -292,18 +246,10 @@ td {
     justify-content: center;
   }
 
-  tr {
-    table-layout: fixed;
-    border: 1px solid white;
-    padding: .5rem;
-    gap: .2rem;
-  }
-
-  .th-hidden {
-    display: none;
-  }
-
-  td {
-    padding: .2rem;
-  }
+  input , select , button {
+    width: 100%;
+    
 }
+
+}
+

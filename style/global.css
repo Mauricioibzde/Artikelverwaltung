@@ -1,0 +1,32 @@
+body {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+
+
+
+input , select , button {
+    width: 8rem;
+    padding-inline: .5rem;
+      border-radius: 2rem;
+      height: 2rem;
+}
+
+main {
+    padding: 2rem;
+}
+
+#btnAdd {
+ 
+  padding-inline: .5rem;
+  font-weight: 600;
+  background-color: var(--blue-noch-dark);
+  color: var(--white);
+ border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  
+}
+
+

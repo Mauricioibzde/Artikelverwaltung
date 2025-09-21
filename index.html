@@ -9,24 +9,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artikelverwaltung</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/index.css">
 </head>
 
 <body>
 
     <main>
-        <div class="background">
-
-        </div>
-        <div class="app">
+       
+        <div class="app-menu">
             <div class="title">
                 <h1>Artikelverwaltung</h1>
                 <img src="assets/icons/gestao-de-produtos.png" alt="">
             </div>
-
-            <form>
-                <div class="menu-artikelverwaltung">
-                    <div class="menu-items">
+            
+              <div class="menu-items">
                         <p><span>Artikelname</span><input id="Artikelname" type="text" placeholder="Hier eingeben"></p>
                         <p><span>Menge</span><input id="Menge" type="number" placeholder=" 0 "></p>
                         <p><span>Artikelpreis</span><input id="amount" type="text" placeholder="0.00 €"></p>
@@ -41,33 +37,15 @@
                                 <option value="Obst">Obst</option>
                             </select>
                         </p>
-                    </div>
 
-                    <div class="btnAdd">
-                        <button id="btnAdd">Produkt hinzufügen</button>
+                         
+                        <p><span></span><button id="btnAdd">hinzufügen</button></p>
+                   
                     </div>
-                </div>
-
-            </form>
+           
            
 
-<div class="scroll-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Menge</th>
-                        <th>Preis</th>
-                        <th>Kategorie</th>
-                        <th class="th-hidden"></th>
-                    </tr>
-                </thead>
-                <tbody id="list">
-                   
-                  
-                </tbody>
-            </table>
-        </div>
+
 
 
 
@@ -81,6 +59,6 @@
 
 
 </body>
-<script src="script/script.js"></script>
+
 
 </html>
