@@ -15,35 +15,37 @@
 <body>
 
     <main>
-       
-        <div class="app-menu">
+
+      <section class="menu-app-content">
+            <div class="app-menu">
             <div class="title">
                 <h1>Artikelverwaltung</h1>
                 <img src="assets/icons/gestao-de-produtos.png" alt="">
             </div>
-            
-              <div class="menu-items">
-                        <p><span>Artikelname</span><input id="Artikelname" type="text" placeholder="Hier eingeben"></p>
-                        <p><span>Menge</span><input id="Menge" type="number" placeholder=" 0 "></p>
-                        <p><span>Artikelpreis</span><input id="amount" type="text" placeholder="0.00 €"></p>
 
-                        <p>
-                            <span>Kategorie</span>
-                            <select name="Kategorie" id="Kategorie">
-                                <option value="">Bitte wählen</option>
-                                <option value="Getränke">Getränke</option>
-                                <option value="Zigaretten">Zigaretten</option>
-                                <option value="Sußigkeite">Sußigkeite</option>
-                                <option value="Obst">Obst</option>
-                            </select>
-                        </p>
+            <div class="menu-items">
+                <p><span>Artikelname</span><input id="Artikelname" type="text" placeholder="Hier eingeben"></p>
+                <p><span>Menge</span><input id="Menge" type="number" placeholder=" 0 "></p>
+                <p><span>Artikelpreis</span><input id="amount" type="text" placeholder="0.00 €"></p>
 
-                         
-                        <p><span></span><button id="btnAdd">hinzufügen</button></p>
-                   
-                    </div>
-           
-           
+                <p>
+                    <span>Kategorie</span>
+                    <select name="Kategorie" id="Kategorie">
+                        <option value="">Bitte wählen</option>
+                        <option value="Getränke">Getränke</option>
+                        <option value="Zigaretten">Zigaretten</option>
+                        <option value="Sußigkeite">Sußigkeite</option>
+                        <option value="Obst">Obst</option>
+                    </select>
+                </p>
+
+
+                
+
+            </div>
+            <button id="btnAdd">hinzufügen</button>
+
+
 
 
 
@@ -55,6 +57,34 @@
 
 
         </div>
+      </section>
+        
+        <section class="liste-of-the-article">
+            
+                <div class="product-detels-title">
+                    <p>Produto</p>
+                    <p>Quantidade</p>
+                    <p>Preco</p>
+                    <p>Categoria</p>
+                </div>
+               
+       
+
+        <ul>
+            <li>
+                <div class="product-detels">
+                    <p>Banana</p>
+                    <p>120</p>
+                    <p>15000,00</p>
+                    <p>Frutas</p>
+                </div>
+                <div class="product-manipution">
+                    <button>edit</button>
+                    <button>delete</button>
+                </div>
+            </li>
+        </ul>
+        </section>
     </main>
 
 

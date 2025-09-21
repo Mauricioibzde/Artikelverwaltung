@@ -59,58 +59,49 @@ span {
   font-weight: bold;
 }
 
-main {
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* Menu principal */
 .app-menu {
-
   display: grid;
   align-items: center;
-  background-color: var(--blue-light);
+  grid-template-rows: auto;
+  width: 100%;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1rem;
+  height: 100%;
+ 
+  gap: 1rem;
+ 
   box-shadow: 0px 0px 20px 0px rgb(105, 175, 255);
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  display: grid;
 }
 
 .title img {
   height: 4rem;
 }
 
-
-
 .menu-items {
   display: grid;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
   align-items: center;
   gap: 1rem;
+}
 
-  & p {
-    display: grid;
-    
-  }
-
-  & p:nth-child(5) {
-    align-self: end;
-  }
+.menu-items p {
+  display: block;
+  text-align: left;
 }
 
 /* Botão de adicionar */
 .btnAdd {
-  align-self: flex-end;
+  justify-self: center;
 }
 
-
+#btnAdd {
+  justify-self: center;
+}
 
 #btnAdd:hover {
   transform: scale(1.1);
@@ -119,11 +110,13 @@ main {
 
 /* Área do formulário */
 .menu-artikelverwaltung {
-  display: flex;
+  display: grid;
+  grid-auto-flow: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0;
   gap: 1rem;
-  margin-top: 5rem;
 }
 
 .menu-artikelverwaltung span {
@@ -136,13 +129,23 @@ main {
   border: 2px solid var(--blue-noch-dark);
 }
 
+.menu-artikelverwaltung button {
+  justify-self: center;
+}
 
+.menu-artikelverwaltung p {
+  display: flex;
+  justify-content: space-between;
+}
 
 /* Botões de editar/deletar */
 .edit-delete {
   display: flex;
-  gap: 2rem;
+  margin-top: 1rem;
   justify-content: center;
+  background-color: #5f6f87;
+  border-radius: 2rem;
+  gap: 2rem;
   align-items: center;
 }
 
@@ -168,88 +171,28 @@ main {
   width: 1rem;
 }
 
-/* Responsividade */
-@media (max-width: 800px) {
-  body {
-    overflow: hidden;
-  }
 
-  .menu-items {
-    grid-auto-flow: row;
-  }
-
-  .btnAdd {
-    justify-self: center;
-  }
-
-  .menu-artikelverwaltung {
-    display: grid;
-    grid-auto-flow: row;
-    align-items: center;
-  }
-
-  .menu-artikelverwaltung button {
-    justify-self: center;
-  }
-
-  .menu-artikelverwaltung p {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .edit-delete {
-    justify-content: space-between;
-    background-color: #5f6f87;
-    border-radius: 2rem;
-  }
-
-  .title {
-    display: grid;
-  }
-
-  .scroll-wrapper {
+.scroll-wrapper {
   max-height: 350px;
 }
 
- #list {
-    max-height: 400px;
-    overflow: auto;
-    border-radius: 1rem;
-  }
-
-  .app-menu {
-    
-    width: 100%;
-   
-    padding: .2rem;
-    margin-top: 2rem;
-  }
-
-  .scroll-wrapper table thead th {
-    position: sticky;
-    top: 0;
-    background-color: var(--blue-noch-dark);
-    color: var(--white);
-    z-index: 2;
-    border-bottom: 1px solid #ccc;
-  }
-
-  .menu-artikelverwaltung {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-  }
-
-  .edit-delete {
-    margin-top: 1rem;
-    justify-content: center;
-  }
-
-  input , select , button {
-    width: 100%;
-    
+#list {
+  max-height: 400px;
+  overflow: auto;
+  border-radius: 1rem;
 }
 
+.scroll-wrapper table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--blue-noch-dark);
+  color: var(--white);
+  z-index: 2;
+  border-bottom: 1px solid #ccc;
 }
 
+input,
+select,
+button {
+  width: 100%;
+}
