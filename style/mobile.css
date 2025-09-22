@@ -4,17 +4,50 @@
         grid-template-columns: 1fr;
     }
 
-    
-.product-manipution {
- 
+
 }
 
-#result-of-print {
-    height: 4rem;
+
+
+/* ===================== */
+/* RESPONSIVIDADE        */
+/* ===================== */
+
+@media (max-width: 768px) {
+
+li {
+  padding-inline: .5rem;
+}
+  .product-detels-title {
+   padding-inline: .5rem;
+  }
+
+  ul li .product-detels {
+    display: grid;
+    grid-auto-flow: column;
+   
+  }
+
+  ul li p {
+    text-align: left;
+  }
+
+
+
+  .product-manipution button {
+    width: 100%;
+  }
 }
 
-.product-detels {
-    height: 4rem;
-}
+@media (max-width: 480px) {
 
+
+  .product-manipution {
+    padding-inline: 0.5rem;
+  }
+
+  .product-manipution button {
+    font-size: 0.9rem;
+    height: 2.5rem;
+  }
 }

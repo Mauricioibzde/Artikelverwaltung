@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  -webkit-text-size-adjust: 100%; /* evita zoom automático em inputs iOS */
+  touch-action: manipulation;     /* desativa zoom duplo em botões/links */
+}
+
 
 body {
     display: grid;
