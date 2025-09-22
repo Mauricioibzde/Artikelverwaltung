@@ -32,23 +32,7 @@ ul {
         
     }
 
-    & .product-manipution {
-        display: grid;
-        grid-auto-flow: column;
-        gap: 1rem;
-        padding-block: .4rem;
-        border-top: solid 1px white;
-        justify-content: space-between;
-        padding-inline: 2rem;
-
-         & button {
-            border: none;
-            width: 5rem;
-            height: 2rem;
-            background: var(--blue-light);
-            color: white;
-         }
-    }
+  
 
     & p {
         padding: .3rem;
@@ -80,3 +64,33 @@ ul {
  display: grid;
  gap: .5rem;
 }
+
+
+.product-manipution {
+    display: grid; /* manter no fluxo para animar */
+    justify-content: space-between;
+    max-height: 0; /* comece "fechado" */
+    opacity: 0;
+    overflow: hidden;
+    grid-auto-flow: column;
+    gap: 1rem;
+    padding-block: 0; /* remove padding ao fechar */
+    border-top: solid 1px white;
+    padding-inline: 2rem;
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding-block 0.5s ease;
+
+    & button {
+        border: none;
+        width: 10rem;
+        height: 2rem;
+        background: var(--blue-light);
+        color: white;
+    }
+}
+
+.product-manipution.active {
+    max-height: 100px; /* ajustar de acordo com o conteúdo */
+    opacity: 1;
+    padding-block: .4rem; /* restaurar padding */
+}
+
