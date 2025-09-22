@@ -15,9 +15,13 @@ body {
     display: grid;
     margin: 0 auto;
     height: 100vh;
+    background: #020024;
+background: linear-gradient(60deg, rgba(2, 0, 36, 0.274) 0%, rgba(0, 0, 77, 1) 30%, rgba(0, 2, 60, 1) 60%, rgba(0, 6, 26, 1) 100%);
  
 
 }
+
+
 
 /* Overlay escuro e desfocado */
 
@@ -48,7 +52,7 @@ input,
 select,
 button {
   height: 3rem;
-  background-color: rgba(47, 47, 47, 0.084);
+  background-color: rgba(2, 0, 37, 0.913);
   border-radius: 5rem;
   padding-inline: 2rem;
   color: white;
@@ -153,7 +157,7 @@ select {
   height: 3rem;
   padding: 0 1rem;
   border-radius: 2rem;
-  background-color: rgba(47, 47, 47, 0.1); /* mais transparente */
+  
   color: white;
   border: none;
   appearance: none; /* Remove o estilo padrão do navegador */
