@@ -29,6 +29,7 @@ ul {
     padding-block: .4rem;
     cursor: pointer;
     outline: none; 
+
 }
 
 
@@ -37,6 +38,7 @@ ul {
     & p {
         padding: .3rem;
         text-align: center;
+        justify-self: center;
     }
 }
 }
