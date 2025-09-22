@@ -13,11 +13,9 @@ body {
 
     /* Fundo com overlay escuro */
     background: 
-        linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5)),
-        url(../assets/img/background.jpg);
-    background-size: cover;
-   
-    background-position: center;
+        linear-gradient(rgb(0, 0, 0), rgb(1, 24, 95))
+       
+    
 }
 
 
@@ -43,6 +41,7 @@ button {
   color: white;
   border: none;
   outline: none;
+  font-size:16px ;
 }
 
 /* Placeholder em branco */
