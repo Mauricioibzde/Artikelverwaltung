@@ -110,7 +110,7 @@ ul {
     gap: 1rem;
     padding-block: 0; /* remove padding ao fechar */
     border-top: solid 1px white;
-    padding-inline: 2rem;
+    padding-inline: 5rem;
     transition: max-height 0.5s ease, opacity 0.5s ease, padding-block 0.5s ease;
     
 
