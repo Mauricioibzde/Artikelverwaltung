@@ -1,0 +1,11 @@
+.footer {
+  grid-column: 1 / -1; /* Faz ocupar todas as colunas do grid */
+  margin-top: 40px;
+  padding: 20px;
+ 
+  color: #f1f1f1;
+  text-align: center;
+  font-family: var(--font-inter, sans-serif);
+  font-size: 14px;
+ background-color: var(--yellow-dark);
+}

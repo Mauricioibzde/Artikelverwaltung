@@ -13,7 +13,7 @@ body {
 
     /* Fundo com overlay escuro */
     background: 
-        linear-gradient(rgb(8, 0, 38), rgb(0, 4, 15))
+        linear-gradient(rgb(0, 0, 0), rgb(1, 24, 95))
        
     
 }
@@ -26,7 +26,7 @@ li {
 
 section {
     width: 100%;
-    height: 100dvh;
+   
     
      padding: 2rem;
 }
@@ -76,18 +76,6 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 142, 202, 0.5);
 }
 
-/* Remove setinhas de input number - Chrome, Edge, Safari */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Remove setinhas de input number - Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
 
 
 select {
@@ -97,18 +85,22 @@ select {
 }
 
 
+/* Main como grid vertical */
 main {
-   
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    align-self: center;
-    grid-auto-flow: column;
- 
+    grid-template-rows: auto;
+    grid-template-rows: 2.5fr 1fr; 
+   
 }
+
+
+/* Conteúdo principal */
+.menu-app-content,
+.liste-of-the-article {
+    padding: 20px;
+}
+
 
 #btnAdd {
  
