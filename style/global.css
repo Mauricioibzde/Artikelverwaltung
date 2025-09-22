@@ -9,13 +9,18 @@
 body {
     display: grid;
     margin: 0 auto;
-    height: auto;
+    height: 100vh;
 
-    /* Fundo com overlay escuro */
-    background: 
-        linear-gradient(rgb(0, 0, 0), rgb(1, 24, 95))
-       
-    
+    /* Fundo animado com cores mudando */
+    background: linear-gradient(270deg, #000000, #09001fec);
+    background-size: 800% 800%;
+    animation: gradientAnim 20s ease infinite;
+}
+
+@keyframes gradientAnim {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 
