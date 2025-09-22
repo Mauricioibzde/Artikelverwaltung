@@ -8,11 +8,18 @@
 
 body {
     display: grid;
-   
     margin: 0 auto;
-   height: auto;
-  
+    height: auto;
+
+    /* Fundo com overlay escuro */
+    background: 
+        linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5)),
+        url(../assets/img/background.jpg);
+    background-size: cover;
+   
+    background-position: center;
 }
+
 
 li {
     list-style: none;
@@ -26,17 +33,47 @@ section {
      padding: 2rem;
 }
 
-
-
-
-input , select , button {
-    width: 8rem;
-    padding-inline: .5rem;
-      border-radius: .3rem;
-      height: 3rem;
-      border: none;
-      color: var(--blue-dark);
+input,
+select,
+button {
+  height: 3rem;
+  background-color: rgba(47, 47, 47, 0.084);
+  border-radius: 5rem;
+  padding-inline: 2rem;
+  color: white;
+  border: none;
+  outline: none;
 }
+
+/* Placeholder em branco */
+input::placeholder,
+select::placeholder {
+  color: white;
+  opacity: 1; /* garante que a cor fique sólida */
+}
+
+
+/* Hover e foco para todos */
+input:hover,
+select:hover,
+button:hover,
+input:focus,
+select:focus,
+button:focus {
+    transition: all 0.5s ease-in-out;
+    height: 3rem;
+    border: 3px solid rgb(0, 142, 202);
+    outline: none; /* remove a outline padrão do browser */
+}
+
+/* Opcional: efeito de leve sombra no hover */
+input:hover,
+select:hover,
+button:hover {
+    box-shadow: 0 0 10px rgba(0, 142, 202, 0.5);
+}
+
+
 
 select {
   & option {
@@ -69,5 +106,60 @@ main {
   transition: transform 0.3s ease;
   
 }
+
+.menu-items {
+  & span {
+    position: relative;
+    left: 2rem;
+  }
+}
+
+
+
+
+/***/
+
+
+/* Estilo geral do select */
+select {
+  height: 3rem;
+  padding: 0 1rem;
+  border-radius: 2rem;
+  background-color: rgba(47, 47, 47, 0.1); /* mais transparente */
+  color: white;
+  border: none;
+  appearance: none; /* Remove o estilo padrão do navegador */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Placeholder do select */
+select option[value=""] {
+  color: #ccc; /* cor suave para placeholder */
+}
+
+
+
+/* Ícone de seta personalizado */
+select {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+    border-radius: 2rem;
+}
+
+/* Options transparentes */
+select option {
+  background-color: rgba(0, 0, 0, 0.975); /* fundo semi-transparente */
+  color: white;
+  padding: 0.5rem;
+
+}
+
 
 
