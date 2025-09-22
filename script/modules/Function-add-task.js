@@ -1,16 +1,23 @@
 import { readSelector } from "./Universal-selector.js";
 
-// Formata número como moeda local
+// Formata número como moeda local (EUR)
 function formatCurrency(value) {
   const number = Number(value.replace(/[^0-9.,]/g, '').replace(',', '.'));
   if (isNaN(number)) return '';
-  return new Intl.NumberFormat('EUR', { style: 'currency', currency: 'EUR' }).format(number);
+  return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number);
 }
 
 // Valida inputs
 function validateArticle(article) {
   if (!article.name || !article.quantity || !article.price || !article.category) {
     alert("Por favor, preencha todos os campos!");
+    return false;
+  }
+
+  // Validação do nome: somente letras e espaços
+  const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+  if (!nameRegex.test(article.name)) {
+    alert("O nome do produto deve conter apenas letras!");
     return false;
   }
 
@@ -28,15 +35,16 @@ function validateArticle(article) {
 function maskCurrencyInput(input) {
   input.addEventListener("input", (e) => {
     let value = e.target.value;
-
-    // Remove tudo que não for número
     value = value.replace(/\D/g, '');
-
-    // Converte para número e divide por 100 (centavos)
     const number = Number(value) / 100;
+    e.target.value = number.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+  });
+}
 
-    // Formata para moeda EURO
-    e.target.value = number.toLocaleString('EUR', { style: 'currency', currency: 'EUR' });
+// Bloqueia números e caracteres especiais no nome do artigo
+function maskTextInput(input) {
+  input.addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
   });
 }
 
@@ -44,23 +52,24 @@ export function addTask() {
   const btn_add_task = document.getElementById("btnAdd");
   const list = document.querySelector(".liste-of-the-article ul");
   const priceInput = document.getElementById("amount-price");
+  const nameInput = document.getElementById("article-name");
 
-  // Aplica máscara de moeda no input
+  // Aplica máscaras
   maskCurrencyInput(priceInput);
+  maskTextInput(nameInput);
 
   btn_add_task.addEventListener("click", () => {
     const article = readSelector();
 
     if (!validateArticle(article)) return;
 
-    // Formata o preço corretamente
     const formattedPrice = formatCurrency(article.price);
 
     // Cria novo <li>
     const li = document.createElement("li");
     li.classList.add("li-background-color");
     li.innerHTML = `
-      <div class="product-detels">
+      <div class="product-detels" tabindex="0">
         <p class="product-name">${article.name}</p>
         <p class="product-quantity">${article.quantity}</p>
         <p class="product-price">${formattedPrice}</p>
@@ -68,7 +77,6 @@ export function addTask() {
       </div>
     `;
 
-    // Cria div de manipulação
     const div = document.createElement("div");
     div.classList.add("product-manipution");
 
@@ -86,35 +94,31 @@ export function addTask() {
     list.appendChild(li);
 
     // Limpa os campos
-    document.querySelector("#article-name").value = "";
+    nameInput.value = "";
     document.querySelector("#article-quantity").value = "";
-    document.querySelector("#amount-price").value = "";
+    priceInput.value = "";
     document.querySelector("#category").value = "";
   });
 
-  // Função para abrir, editar ou deletar tarefas
   function openDescriptionTask() {
     list.addEventListener("click", (e) => {
       const li = e.target.closest("li");
       if (!li) return;
       const div = li.querySelector(".product-manipution");
 
-      // Toggle da visualização dos botões
       if (e.target.closest(".product-detels")) {
         div.classList.toggle("active");
       }
 
-      // Editar tarefa
       if (e.target.classList.contains("edit-btn")) {
-        document.querySelector("#article-name").value = li.querySelector(".product-name").textContent;
+        nameInput.value = li.querySelector(".product-name").textContent;
         document.querySelector("#article-quantity").value = li.querySelector(".product-quantity").textContent;
-        document.querySelector("#amount-price").value = li.querySelector(".product-price").textContent;
+        priceInput.value = li.querySelector(".product-price").textContent;
         document.querySelector("#category").value = li.querySelector(".product-category").textContent;
 
         li.remove();
       }
 
-      // Deletar tarefa
       if (e.target.classList.contains("delete-btn")) {
         li.remove();
       }

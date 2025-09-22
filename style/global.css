@@ -44,6 +44,10 @@ button {
   font-size:1.1rem ;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Placeholder em branco */
 input::placeholder,
 select::placeholder {
@@ -70,6 +74,18 @@ input:hover,
 select:hover,
 button:hover {
     box-shadow: 0 0 10px rgba(0, 142, 202, 0.5);
+}
+
+/* Remove setinhas de input number - Chrome, Edge, Safari */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove setinhas de input number - Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 
