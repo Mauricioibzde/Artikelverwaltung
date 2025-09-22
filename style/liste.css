@@ -1,7 +1,9 @@
 
-.liste-of-the-article {
-   
-        
+.resulte-of-the-liste {
+    height: 100%;
+    border-radius: 1rem;
+     box-shadow: 0px 0px 20px 0px rgb(105, 175, 255);
+     overflow: hidden;
 }
 
 
@@ -11,7 +13,7 @@ ul {
     display: grid;
     li {
    
-    background-color: var( --blue-noch-dark);
+   
 
     border-radius: .5rem;
     
@@ -41,6 +43,10 @@ ul {
 
          & button {
             border: none;
+            width: 5rem;
+            height: 2rem;
+            background: var(--blue-light);
+            color: white;
          }
     }
 
@@ -58,6 +64,7 @@ ul {
         grid-auto-flow: column;
         justify-content: space-between;
          padding-block: .4rem;
+         background-color: var(--blue-light);
 
          & p {
             color: aliceblue;

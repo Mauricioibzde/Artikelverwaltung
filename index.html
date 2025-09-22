@@ -24,13 +24,13 @@
             </div>
 
             <div class="menu-items">
-                <p><span>Artikelname</span><input id="Artikelname" type="text" placeholder="Hier eingeben"></p>
-                <p><span>Menge</span><input id="Menge" type="number" placeholder=" 0 "></p>
-                <p><span>Artikelpreis</span><input id="amount" type="text" placeholder="0.00 €"></p>
+                <p><span>Artikelname</span><input id="article-name" type="text" placeholder="Hier eingeben"></p>
+                <p><span>Menge</span><input id="article-quantity" type="number" placeholder=" 0 "></p>
+                <p><span>Artikelpreis</span><input id="amount-price" type="text" placeholder="0.00 €"></p>
 
                 <p>
                     <span>Kategorie</span>
-                    <select name="Kategorie" id="Kategorie">
+                    <select name="Kategorie" id="category">
                         <option value="">Bitte wählen</option>
                         <option value="Getränke">Getränke</option>
                         <option value="Zigaretten">Zigaretten</option>
@@ -61,7 +61,8 @@
         
         <section class="liste-of-the-article">
             
-                <div class="product-detels-title">
+                <div class="resulte-of-the-liste">
+                                    <div class="product-detels-title">
                     <p>Produto</p>
                     <p>Quantidade</p>
                     <p>Preco</p>
@@ -70,23 +71,24 @@
                
        
 
-        <ul>
+        <ul id="result-to-print">
             <li>
                 <div class="product-detels">
-                    <p>Banana</p>
-                    <p>120</p>
-                    <p>15000,00</p>
-                    <p>Frutas</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
                 </div>
-                <div class="product-manipution">
+               <!-- <div class="product-manipution">
                     <button>edit</button>
                     <button>delete</button>
-                </div>
+                </div>-->
             </li>
         </ul>
+                </div>
         </section>
     </main>
-
+   <script type="module" src="script/main.js"></script>
 
 </body>
 

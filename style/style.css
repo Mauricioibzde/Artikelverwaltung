@@ -1,9 +1,4 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 /* Fonte */
 @import url(./mobile.css);
@@ -63,10 +58,10 @@ span {
 .app-menu {
   display: grid;
   align-items: center;
-  grid-template-rows: auto;
+  grid-template-rows: max-content;
   width: 100%;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 1rem 5rem;
   height: 100%;
  
   gap: 1rem;
@@ -76,10 +71,13 @@ span {
 
 .title {
   display: grid;
+  justify-content: center;
 }
 
 .title img {
   height: 4rem;
+  justify-self: center;
+  transform: rotate(90deg);
 }
 
 .menu-items {
@@ -101,12 +99,10 @@ span {
 
 #btnAdd {
   justify-self: center;
+  width: 10rem;
 }
 
-#btnAdd:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 0px 10px 0px rgb(105, 175, 255);
-}
+
 
 /* Área do formulário */
 .menu-artikelverwaltung {
