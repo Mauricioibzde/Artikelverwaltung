@@ -105,7 +105,7 @@ export function addTask() {
 
     const btnEdit = document.createElement("button");
     btnEdit.classList.add("edit-btn");
-    btnEdit.textContent = "Edit";
+    btnEdit.textContent = "Modify";
 
     const btnDelete = document.createElement("button");
     btnDelete.classList.add("delete-btn");

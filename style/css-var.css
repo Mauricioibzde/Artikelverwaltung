@@ -1,5 +1,5 @@
 .li-background-color {
-  background-color: #050065;
+ background: var( --gradient-forest-hover);
 }
 
 .hidden {

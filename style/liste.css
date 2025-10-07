@@ -1,8 +1,9 @@
 .resulte-of-the-liste {
   height: 100%;
   border-radius: 1rem;
-  box-shadow: 0px 0px 20px 0px rgb(105, 175, 255);
+  box-shadow: 0px 0px 20px 0px var(--blue-noch-dark);
   overflow: hidden;
+  background: var(--dark-card);
 }
 
 /* LISTA DE ITENS */
@@ -25,6 +26,8 @@ ul li .product-detels {
   padding-block: 0.4rem;
   cursor: pointer;
   outline: none;
+   box-shadow: 0px 0px 1px 0px rgb(105, 175, 255);
+
  
 }
 
@@ -45,8 +48,9 @@ ul li p {
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   padding-block: 1rem;
-  background-color: var(--blue-light);
-  border-bottom: solid 1px white;
+  background: var( --gradient-forest-hover);
+  
+   box-shadow: 0px 0px 1px 0px rgb(105, 175, 255);
 }
 
 .product-detels-title p {
@@ -83,7 +87,7 @@ ul li p {
 }
 
 #result-to-print::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 142, 202, 0.8);
+   background: var( --gradient-forest-hover);
 }
 
 /* BOTÕES DE AÇÃO */
@@ -106,9 +110,9 @@ ul li p {
 .product-manipution button {
   border: none;
   width: 10rem;
-  height: 2rem;
-  background: var(--blue-light);
-  color: white;
+  height: 1.5rem;
+  background-color: var(--border);
+  color: rgb(200, 199, 199);
   cursor: pointer;
   border-radius: 0.5rem;
 }

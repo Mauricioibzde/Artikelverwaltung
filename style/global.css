@@ -15,8 +15,7 @@ body {
     display: grid;
     margin: 0 auto;
     height: 100vh;
-    background: #020024;
-background: linear-gradient(60deg, rgba(2, 0, 36, 0.274) 0%, rgba(0, 0, 77, 1) 30%, rgba(0, 2, 60, 1) 60%, rgba(0, 6, 26, 1) 100%);
+  
  
 
 }
@@ -52,7 +51,7 @@ input,
 select,
 button {
   height: 3rem;
-  background-color: rgba(2, 0, 37, 0.913);
+  background: var( --gradient-forest-hover);
   border-radius: 5rem;
   padding-inline: 2rem;
   color: white;
@@ -82,7 +81,7 @@ select:focus,
 button:focus {
     transition: all 0.5s ease-in-out;
     height: 3rem;
-    border: 3px solid rgb(0, 142, 202);
+    box-shadow: 0 0 10px var( --dark-bg);
     outline: none; /* remove a outline padrão do browser */
 }
 
@@ -90,7 +89,7 @@ button:focus {
 input:hover,
 select:hover,
 button:hover {
-    box-shadow: 0 0 10px rgba(0, 142, 202, 0.5);
+    box-shadow: 0 0 10px var( --dark-bg);
 }
 
 
@@ -115,6 +114,7 @@ select {
 /* Main como grid vertical */
 main {
     display: grid;
+    justify-content: center;
     height: 100dvh;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -131,7 +131,7 @@ main {
  
   padding-inline: .5rem;
   font-weight: 600;
-  background-color: var(--blue-noch-dark);
+ 
   color: var(--white);
  border: none;
   cursor: pointer;
@@ -193,5 +193,19 @@ select option {
 
 }
 
+
+#btnAdd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .2rem;
+  & span {
+  
+    padding: .2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+  }
+}
 
 
