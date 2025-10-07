@@ -125,7 +125,7 @@ height: 1.5rem;
   background-color: var(--dark-card);
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: all 0.3s ease;
+   transition: all 0.5s ease-in-out;
   height: 2rem;
 
 }
@@ -133,6 +133,7 @@ height: 1.5rem;
 .edit-delete button:hover {
   border-color: var(--accent);
   transform: scale(1.1);
+   transition: all 0.5s ease-in-out;
 }
 
 .edit-delete img {

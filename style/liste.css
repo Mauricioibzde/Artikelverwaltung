@@ -53,7 +53,8 @@ ul li p {
   
  background-color: var(--text-light);
   color: var(--dark-card);
-  box-shadow: 0px 0px 20px 0px rgb(5, 5, 5);
+  box-shadow: 0px 0px 5px 0px rgb(255, 255, 255);
+  border: none;
   
 }
 

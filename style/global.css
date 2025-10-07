@@ -90,6 +90,7 @@ input:hover,
 select:hover,
 button:hover {
     box-shadow: 0 0 10px var( --dark-bg);
+     transition: all 0.5s ease-in-out;
   
 }
 
@@ -214,6 +215,7 @@ select option {
  
     transform: scale(1.05);
     color: white;
+     transition: all 0.5s ease-in-out;
    }  
 
 
