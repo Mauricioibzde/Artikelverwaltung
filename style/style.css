@@ -7,7 +7,17 @@
   --accent: #58a6ff;            /* Cor de destaque */
   --accent-hover: #1f6feb;      /* Hover do destaque */
   --border: #30363d;            /* Bordas sutis */
-  --font-family: "Nunito", sans-serif;
+  --font-family: "Nunito", sans-serif; 
+   --task-background: #273542; 
+    --task-background-hover: #30363d; 
+     
+
+     --task-btn: #391a34; 
+
+#391a34
+
+   
+
 }
 
 /* Body */
@@ -46,6 +56,8 @@ span {
   gap: 1rem;
   background-color: var(--dark-card);
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+
+
 }
 
 .title {
@@ -68,26 +80,7 @@ span {
   color: var(--text-light);
 }
 
-/* Botões de adicionar */
-.btnAdd, #btnAdd {
-  justify-self: center;
-  width: 10rem;
-  height: 2rem;
-  background: var(--border);
- 
-  border: none;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  padding: 0.5rem 0;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
 
-.btnAdd:hover, #btnAdd:hover {
-  background: var(--text-muted);
-  transform: scale(1.05);
-   color: var(--dark-bg);
-}
 
 /* Área do formulário */
 .menu-artikelverwaltung {
@@ -101,7 +94,7 @@ span {
   padding: 0.5rem;
   border: 1px solid var(--border);
   background-color: var(--dark-card);
-  color: var(--text-light);
+
   border-radius: 0.5rem;
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
@@ -172,7 +165,7 @@ height: 1.5rem;
 input, select, button {
   width: 100%;
   background-color: var(--dark-card);
-  color: var(--text-light);
+  
   border-radius: 0.5rem;
   border: 1px solid var(--border);
   transition: border-color 0.3s ease, background-color 0.3s ease;
@@ -183,8 +176,6 @@ input:focus, select:focus {
   outline: none;
 }
 
-button:hover {
-  background-color: var(--accent-hover);
-}
+
 
 

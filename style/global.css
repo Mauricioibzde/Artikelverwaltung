@@ -60,9 +60,7 @@ button {
   font-size:1.1rem ;
 }
 
-button {
-  cursor: pointer;
-}
+
 
 /* Placeholder em branco */
 input::placeholder,
@@ -82,7 +80,9 @@ button:focus {
     transition: all 0.5s ease-in-out;
     height: 3rem;
     box-shadow: 0 0 10px var( --dark-bg);
+ 
     outline: none; /* remove a outline padrão do browser */
+    
 }
 
 /* Opcional: efeito de leve sombra no hover */
@@ -90,6 +90,7 @@ input:hover,
 select:hover,
 button:hover {
     box-shadow: 0 0 10px var( --dark-bg);
+  
 }
 
 
@@ -127,17 +128,6 @@ main {
 
 
 
-#btnAdd {
- 
-  padding-inline: .5rem;
-  font-weight: 600;
- 
-  color: var(--white);
- border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  
-}
 
 .menu-items {
   & span {
@@ -199,13 +189,38 @@ select option {
   justify-content: center;
   align-items: center;
   gap: .2rem;
+  justify-self: center;
+  width: 10rem;
+  height: 2rem;
+  background-color: var(--task-btn);
+   border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: var( --text-light);
   & span {
   
-    padding: .2rem;
+   padding: .5rem 2rem;
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
   }
-}
+
+   }
+
+   #btnAdd:hover {
+ 
+    transform: scale(1.05);
+    color: white;
+   }  
+
+
+
+
+
+
+
 
 

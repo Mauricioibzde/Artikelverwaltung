@@ -1,4 +1,5 @@
 .resulte-of-the-liste {
+  padding: 1rem;
   height: 100%;
   border-radius: 1rem;
   box-shadow: 0px 0px 20px 0px var(--blue-noch-dark);
@@ -13,10 +14,13 @@ ul {
 }
 
 ul li {
-  border-radius: 0.5rem;
+  
   justify-content: center;
   align-items: center;
+ background-color:var(--task-background);
+ 
 }
+
 
 /* DETALHES DO PRODUTO */
 ul li .product-detels {
@@ -26,7 +30,8 @@ ul li .product-detels {
   padding-block: 0.4rem;
   cursor: pointer;
   outline: none;
-   box-shadow: 0px 0px 1px 0px rgb(105, 175, 255);
+  border: solid 1px rgb(98, 98, 98);
+
 
  
 }
@@ -39,7 +44,24 @@ ul li p {
 
 .product-detels.active {
   box-shadow: 0px 0px 20px 0px rgb(105, 175, 255);
-  border-radius: 4px;
+  border-radius: 1rem;
+  
+  
+}
+
+.product-detels:hover {
+  
+ background-color: var(--text-light);
+  color: var(--dark-card);
+  box-shadow: 0px 0px 20px 0px rgb(5, 5, 5);
+  
+}
+
+.product-detels:focus {
+  background-color: aliceblue;
+  color: black;
+
+  
 }
 
 /* CABEÇALHO */
@@ -48,9 +70,9 @@ ul li p {
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   padding-block: 1rem;
-  background: var( --gradient-forest-hover);
   
-   box-shadow: 0px 0px 1px 0px rgb(105, 175, 255);
+  
+    box-shadow: 0px 0px 1px 0px rgb(98, 98, 98);
 }
 
 .product-detels-title p {
@@ -97,13 +119,14 @@ ul li p {
   justify-content: space-between;
   gap: 1rem;
   padding-inline: 5rem;
-
+ 
   max-height: 0;
   opacity: 0;
   overflow: hidden;
   padding-block: 0;
+  border-radius: 0 0 1rem 1rem;
 
-  border-top: solid 1px white;
+ 
   transition: max-height 0.5s ease, opacity 0.5s ease, padding-block 0.5s ease;
 }
 
@@ -111,10 +134,15 @@ ul li p {
   border: none;
   width: 10rem;
   height: 1.5rem;
-  background-color: var(--border);
+  background-color: var(--task-btn);
   color: rgb(200, 199, 199);
   cursor: pointer;
   border-radius: 0.5rem;
+ 
+}
+
+.product-manipution button:hover {
+  color: white;
 }
 
 .product-manipution.active {
