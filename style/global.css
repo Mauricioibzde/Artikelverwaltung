@@ -15,10 +15,31 @@ body {
     display: grid;
     margin: 0 auto;
     height: 100vh;
+    background-image: url(../assets/img/9.jpg);
+    background-position: center;
+    background-size: cover;
+  background: none; /* sem imagem direta */
+  position: relative;
+  
+    
   
  
 
 }
+
+
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* cobre toda a tela */
+  background-image: url(../assets/img/9.jpg);
+  background-position: center;
+  background-size: cover;
+  opacity: .1; /* controla a opacidade da imagem */
+  z-index: -1; /* fica atrás do conteúdo */
+}
+
 
 
 
@@ -27,7 +48,7 @@ body {
 
 /* Conteúdo acima do overlay */
 body {
-  max-width: 1280px;
+
   margin: 0 auto;
 }
 
@@ -121,7 +142,7 @@ main {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-template-rows: 2.5fr auto; 
-    padding: 3rem 1rem 0 1rem;
+    padding: 2rem 3rem ;
     gap: 1rem;
    
 }
