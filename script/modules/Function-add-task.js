@@ -1,159 +1,132 @@
-import { readSelector } from "./Universal-selector.js";
+const btnAdd = document.getElementById("btnAdd");
+const resultList = document.getElementById("result-to-print");
 
-// Função para formatar valores como moeda local (EUR)
+let articles = [];
+
+// Formata preço em moeda
 function formatCurrency(value) {
-  // Remove tudo que não seja número ou vírgula, substitui vírgula por ponto e converte para número
-  const number = parsePrice(value);
-  if (isNaN(number)) return '';
-  // Formata para moeda alemã
-  return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number);
+  return Number(value).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 }
 
-// Função para converter string de preço em número mesmo que seja muito alto
-function parsePrice(value) {
-  if (!value) return NaN;
-  // Remove todos os caracteres que não sejam dígitos ou vírgula
-  let cleaned = value.replace(/[^\d,]/g, '');
-  // Substitui a última vírgula por ponto decimal
-  cleaned = cleaned.replace(/,(\d{0,2})$/, '.$1');
-  // Converte para float
-  const number = parseFloat(cleaned);
-  return number;
-}
+// Renderiza lista de artigos
+function renderArticles() {
+  resultList.innerHTML = "";
 
-// Função para validar todos os inputs do artigo
-function validateArticle(article) {
-  // Checa se todos os campos foram preenchidos
-  if (!article.name || !article.quantity || !article.price || !article.category) {
-    alert("Por favor, preencha todos os campos!");
-    return false;
-  }
-
-  // Valida nome: apenas letras e espaços
-  const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
-  if (!nameRegex.test(article.name)) {
-    alert("O nome do produto deve conter apenas letras!");
-    return false;
-  }
-
-  // Valida preço usando parsePrice
-  const priceNumber = parsePrice(article.price);
-  if (isNaN(priceNumber) || priceNumber <= 0) {
-    alert("Digite um preço válido!");
-    return false;
-  }
-
-  return true;
-}
-
-// Máscara de moeda no input (formato de moeda alemã)
-function maskCurrencyInput(input) {
-  input.addEventListener("input", (e) => {
-    let value = e.target.value;
-    // Remove tudo que não for dígito
-    value = value.replace(/\D/g, '');
-    // Divide por 100 para considerar centavos
-    const number = Number(value) / 100;
-    // Formata para moeda local
-    e.target.value = number.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
-  });
-}
-
-// Bloqueia números e caracteres especiais no input do nome
-function maskTextInput(input) {
-  input.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
-  });
-}
-
-// Função principal para adicionar artigos à lista
-export function addTask() {
-  const btn_add_task = document.getElementById("btnAdd");
-  const list = document.querySelector(".liste-of-the-article ul");
-  const priceInput = document.getElementById("amount-price");
-  const nameInput = document.getElementById("article-name");
-
-  // Aplica máscaras nos inputs
-  maskCurrencyInput(priceInput);
-  maskTextInput(nameInput);
-
-  // Clique no botão "Adicionar"
-  btn_add_task.addEventListener("click", () => {
-    const article = readSelector(); // Lê os valores do formulário
-
-    // Valida os dados
-    if (!validateArticle(article)) return;
-
-    // Formata preço para exibição
-    const formattedPrice = formatCurrency(article.price);
-
-    // Cria novo <li> com os dados do artigo
+  articles.forEach((article, index) => {
     const li = document.createElement("li");
-    li.classList.add("li-background-color");
-    li.innerHTML = `
-      <div class="product-detels" tabindex="0">
-        <p class="product-name">${article.name}</p>
-        <p class="product-quantity">${article.quantity}</p>
-        <p class="product-price">${formattedPrice}</p>
-        <p class="product-category">${article.category}</p>
-      </div>
+    li.classList.add("article-item");
+
+    const displayDiv = document.createElement("div");
+    displayDiv.classList.add("display-div");
+    displayDiv.innerHTML = `
+      <p>${article.name}</p>
+      <p>${article.quantity}</p>
+      <p>${formatCurrency(article.price)}</p>
+      <p>${article.category}</p>
     `;
 
-    // Cria div de manipulação (editar/excluir)
-    const div = document.createElement("div");
-    div.classList.add("product-manipution");
+    const editDiv = document.createElement("div");
+    editDiv.classList.add("edit-div");
+    editDiv.style.display = "none";
+    editDiv.innerHTML = `
+      <input type="text" value="${article.name}" class="edit-name">
+      <input type="number" value="${article.quantity}" class="edit-quantity">
+      <input type="number" step="0.01" value="${article.price}" class="edit-price">
+      <select class="edit-category">
+        <option value="Drinks" ${article.category === "Drinks" ? "selected" : ""}>Drinks</option>
+        <option value="Cigarettes" ${article.category === "Cigarettes" ? "selected" : ""}>Cigarettes</option>
+        <option value="Sweets" ${article.category === "Sweets" ? "selected" : ""}>Sweets</option>
+        <option value="Fruits" ${article.category === "Fruits" ? "selected" : ""}>Fruits</option>
+      </select>
+    `;
 
-    const btnEdit = document.createElement("button");
-    btnEdit.classList.add("edit-btn");
-    btnEdit.textContent = "Modify";
+    const buttonDiv = document.createElement("div");
+    buttonDiv.classList.add("button-div");
+    buttonDiv.innerHTML = `
+      <button class="edit-btn">Editar</button>
+      <button class="delete-btn">Remover</button>
+      <button class="save-btn" style="display:none;">Salvar</button>
+      <button class="cancel-btn" style="display:none;">Cancelar</button>
+    `;
 
-    const btnDelete = document.createElement("button");
-    btnDelete.classList.add("delete-btn");
-    btnDelete.textContent = "Delete";
+    li.appendChild(displayDiv);
+    li.appendChild(editDiv);
+    li.appendChild(buttonDiv);
+    resultList.appendChild(li);
 
-    div.appendChild(btnEdit);
-    div.appendChild(btnDelete);
-    li.appendChild(div);
-    list.appendChild(li);
+    const editBtn = buttonDiv.querySelector(".edit-btn");
+    const deleteBtn = buttonDiv.querySelector(".delete-btn");
+    const saveBtn = buttonDiv.querySelector(".save-btn");
+    const cancelBtn = buttonDiv.querySelector(".cancel-btn");
 
-    // Limpa os campos do formulário
-    nameInput.value = "";
-    document.querySelector("#article-quantity").value = "";
-    priceInput.value = "";
-    document.querySelector("#category").value = "";
+    // Editar
+    editBtn.onclick = () => {
+      displayDiv.style.display = "none";
+      editDiv.style.display = "flex";
+      editBtn.style.display = "none";
+      deleteBtn.style.display = "none";
+      saveBtn.style.display = "inline-block";
+      cancelBtn.style.display = "inline-block";
+    };
+
+    // Cancelar
+    cancelBtn.onclick = () => {
+      displayDiv.style.display = "flex";
+      editDiv.style.display = "none";
+      editBtn.style.display = "inline-block";
+      deleteBtn.style.display = "inline-block";
+      saveBtn.style.display = "none";
+      cancelBtn.style.display = "none";
+    };
+
+    // Salvar
+    saveBtn.onclick = () => {
+      const newName = editDiv.querySelector(".edit-name").value.trim();
+      const newQuantity = parseInt(editDiv.querySelector(".edit-quantity").value);
+      const newPrice = parseFloat(editDiv.querySelector(".edit-price").value);
+      const newCategory = editDiv.querySelector(".edit-category").value;
+
+      if (!newName || !newCategory || isNaN(newQuantity) || newQuantity <= 0 || isNaN(newPrice) || newPrice <= 0) {
+        alert("Preencha todos os campos corretamente!");
+        return;
+      }
+
+      articles[index] = {
+        name: newName,
+        quantity: newQuantity,
+        price: newPrice,
+        category: newCategory
+      };
+
+      renderArticles();
+    };
+
+    // Remover
+    deleteBtn.onclick = () => {
+      articles.splice(index, 1);
+      renderArticles();
+    };
   });
-
-  // Função para abrir/fechar opções de cada item
-  function openDescriptionTask() {
-    list.addEventListener("click", (e) => {
-      const li = e.target.closest("li");
-      if (!li) return;
-      const div = li.querySelector(".product-manipution");
-
-      // Mostra/oculta opções ao clicar no item
-      if (e.target.closest(".product-detels")) {
-        div.classList.toggle("active");
-      }
-
-      // Editar item
-      if (e.target.classList.contains("edit-btn")) {
-        nameInput.value = li.querySelector(".product-name").textContent;
-        document.querySelector("#article-quantity").value = li.querySelector(".product-quantity").textContent;
-        priceInput.value = li.querySelector(".product-price").textContent;
-        document.querySelector("#category").value = li.querySelector(".product-category").textContent;
-
-        li.remove();
-      }
-
-      // Excluir item
-      if (e.target.classList.contains("delete-btn")) {
-        li.remove();
-      }
-    });
-  }
-
-  openDescriptionTask();
 }
 
-// Inicializa a função
-addTask();
+// Adicionar artigo
+btnAdd.onclick = () => {
+  const name = document.getElementById("article-name").value.trim();
+  const quantity = parseInt(document.getElementById("article-quantity").value);
+  const price = parseFloat(document.getElementById("amount-price").value);
+  const category = document.getElementById("category").value;
+
+  if (!name || !category || isNaN(quantity) || quantity <= 0 || isNaN(price) || price <= 0) {
+    alert("Preencha todos os campos corretamente!");
+    return;
+  }
+
+  articles.push({ name, quantity, price, category });
+
+  document.getElementById("article-name").value = "";
+  document.getElementById("article-quantity").value = "";
+  document.getElementById("amount-price").value = "";
+  document.getElementById("category").value = "";
+
+  renderArticles();
+};

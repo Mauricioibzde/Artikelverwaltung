@@ -15,17 +15,17 @@
 <body>
 
     <main>
-
         <section class="menu-app-content">
             <div class="app-menu">
                 <div class="title">
                     <h1>Article Management</h1>
-                   <img src="assets/img/icon-logo-02.png" alt="">
+                    <img src="assets/img/icon-logo-02.png" alt="">
                 </div>
 
                 <div class="menu-items">
                     <p><span>Article Name</span><input id="article-name" type="text" placeholder="Enter here"></p>
-                    <p><span>Quantity</span><input id="article-quantity" type="number" placeholder="0"></p>
+                    <!-- Alterado para type="text" -->
+                    <p><span>Quantity</span><input id="article-quantity" type="text" placeholder="0"></p>
                     <p><span>Article Price</span><input id="amount-price" type="text" placeholder="0.00 €"></p>
                     <p>
                         <span>Category</span>
@@ -37,59 +37,32 @@
                             <option value="Fruits">Fruits</option>
                         </select>
                     </p>
-
-
-
-
                 </div>
                 <button id="btnAdd">Add</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </section>
 
         <section class="liste-of-the-article">
-
             <div class="resulte-of-the-liste">
                 <div class="product-detels-title">
                     <p>Product</p>
                     <p>Quantity</p>
                     <p>Price</p>
                     <p>Category</p>
-
                 </div>
 
-
-
-                <ul id="result-to-print">
-                   
-          
-                </ul>
+                <ul id="result-to-print"></ul>
             </div>
         </section>
+
         <footer class="footer">
             <p>
                 Created by <strong>Mauricio Farias da Silva</strong> ©
                 <span id="year"></span>
             </p>
             <p class="app-info">Manage your inventory easily and quickly 🚀</p>
-
         </footer>
     </main>
     <script type="module" src="script/main.js"></script>
-
 </body>
-
-
 </html>

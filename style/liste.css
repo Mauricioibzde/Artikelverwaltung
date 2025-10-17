@@ -7,6 +7,14 @@
   background: var(--dark-card);
 }
 
+.display-div {
+  display: grid;
+  grid-auto-flow: column;
+  height: 3rem;
+  align-items: center;
+ 
+}
+
 /* LISTA DE ITENS */
 ul {
   display: grid;

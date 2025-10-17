@@ -219,6 +219,32 @@ select option {
    }  
 
 
+   .button-div {
+  
+    gap: 10px;
+}
+
+.button-div {
+    display: none; /* mostra quando clicado */
+}
+
+.button-div.active {
+    display: flex; /* mostra quando clicado */
+}
+
+.display-div {
+  cursor: pointer;
+}
+
+.edit-div {
+  & input {
+    padding-inline: 0;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+
 
 
 
