@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikelverwaltung</title>
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+
+<body>
+
+    <main>
+        <section class="menu-app-content">
+            <div class="app-menu">
+                <div class="title">
+                    <h1>Article Management</h1>
+                    <img src="assets/img/icon-logo-02.png" alt="">
+                </div>
+
+                <div class="menu-items">
+                    <p><span>Article Name</span><input id="article-name" type="text" placeholder="Enter here"></p>
+                    <!-- Alterado para type="text" -->
+                    <p><span>Quantity</span><input id="article-quantity" type="text" placeholder="0"></p>
+                    <p><span>Article Price</span><input id="amount-price" type="text" placeholder="0.00 €"></p>
+                    <p>
+                        <span>Category</span>
+                        <select name="Category" id="category">
+                            <option value="">Please choose</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Cigarettes">Cigarettes</option>
+                            <option value="Sweets">Sweets</option>
+                            <option value="Fruits">Fruits</option>
+                        </select>
+                    </p>
+                </div>
+                <button id="btnAdd">Add</button>
+            </div>
+        </section>
+
+        <section class="liste-of-the-article">
+            <div class="resulte-of-the-liste">
+                <div class="product-detels-title">
+                    <p>Product</p>
+                    <p>Quantity</p>
+                    <p>Price</p>
+                    <p>Category</p>
+                </div>
+
+                <ul id="result-to-print"></ul>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>
+                Created by <strong>Mauricio Farias da Silva</strong> ©
+                <span id="year"></span>
+            </p>
+            <p class="app-info">Manage your inventory easily and quickly 🚀</p>
+        </footer>
+    </main>
+    <script type="module" src="script/main.js"></script>
+</body>
+</html>
