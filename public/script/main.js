@@ -37,9 +37,9 @@ function logFormattedArticles(message) {
 // === MÁSCARAS OTIMIZADAS ===
 function maskCurrencyInput(input) {
     input.addEventListener("input", (e) => {
-        let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
+        let value = e.target.value.replace(/\D/g, '');
         if (value.length === 0) value = '0';
-        value = value.padStart(3, '0'); // garante 2 casas decimais
+        value = value.padStart(3, '0');
 
         const integerPart = value.slice(0, -2);
         const decimalPart = value.slice(-2);
@@ -104,12 +104,15 @@ async function addArticle(article) {
 
 async function updateArticle(id, updatedData) {
     try {
-        await fetch(`${API_URL}/${id}`, {
+        const res = await fetch(`${API_URL}/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedData)
         });
-        await fetchArticles();
+        const updatedArticle = await res.json();
+        const index = articles.findIndex(a => a.id === id);
+        if (index > -1) articles[index] = updatedArticle;
+        renderArticles();
     } catch (err) {
         console.error("Erro ao atualizar artigo:", err);
     }
@@ -118,7 +121,8 @@ async function updateArticle(id, updatedData) {
 async function deleteArticle(id) {
     try {
         await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-        await fetchArticles();
+        articles = articles.filter(a => a.id !== id);
+        renderArticles();
     } catch (err) {
         console.error("Erro ao remover artigo:", err);
     }
@@ -166,8 +170,8 @@ function renderArticles() {
         editDiv.style.display = "none";
         editDiv.innerHTML = `
             <input type="text" value="${article.name}" class="edit-name">
-            <input type="text" value="${formatQuantity(article.quantity)}" class="edit-quantity">
-            <input type="text" value="${formatCurrency(article.price)}" class="edit-price">
+            <input type="text" value="${article.quantity}" class="edit-quantity">
+            <input type="text" value="${article.price}" class="edit-price">
             <select class="edit-category">
                 <option value="Drinks" ${article.category === "Drinks" ? "selected" : ""}>Drinks</option>
                 <option value="Cigarettes" ${article.category === "Cigarettes" ? "selected" : ""}>Cigarettes</option>
@@ -190,19 +194,13 @@ function renderArticles() {
         li.appendChild(buttonDiv);
         resultList.appendChild(li);
 
-     li.addEventListener("click", (e) => {
-    const target = e.target;
-    if (
-        target.tagName !== "INPUT" &&
-        target.tagName !== "SELECT" &&
-        !target.classList.contains("edit-btn") &&
-        !target.classList.contains("save-btn") &&
-        !target.classList.contains("cancel-btn") &&
-        !target.classList.contains("delete-btn")
-    ) {
-        buttonDiv.classList.toggle("active");
-    }
-});
+        // Toggle menu sem interferir nos botões
+        li.addEventListener("click", (e) => {
+            const target = e.target;
+            if (!["INPUT", "SELECT", "BUTTON"].includes(target.tagName)) {
+                buttonDiv.classList.toggle("active");
+            }
+        });
 
         const editBtn = buttonDiv.querySelector(".edit-btn");
         const deleteBtn = buttonDiv.querySelector(".delete-btn");
@@ -231,53 +229,40 @@ function renderArticles() {
         };
 
         // === Salvar ===
-   // === Salvar ===
-saveBtn.onclick = async () => {
-    const newName = editDiv.querySelector(".edit-name").value.trim();
-    let newQuantity = editDiv.querySelector(".edit-quantity").value.replace(/\./g, '');
-    newQuantity = parseInt(newQuantity);
+        saveBtn.onclick = async () => {
+            const newName = editDiv.querySelector(".edit-name").value.trim();
+            let newQuantity = editDiv.querySelector(".edit-quantity").value.replace(/\./g, '');
+            newQuantity = parseInt(newQuantity);
 
-    let newPrice = editDiv.querySelector(".edit-price").value.replace(/[^\d,]/g, '').replace(',', '.');
-    newPrice = parseFloat(newPrice);
+            let newPrice = editDiv.querySelector(".edit-price").value.replace(/[^\d,]/g, '').replace(',', '.');
+            newPrice = parseFloat(newPrice);
 
-    const newCategory = editDiv.querySelector(".edit-category").value;
+            const newCategory = editDiv.querySelector(".edit-category").value;
 
-    const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
-    if (!newName || !nameRegex.test(newName) || !newCategory || isNaN(newQuantity) || newQuantity <= 0 || isNaN(newPrice) || newPrice <= 0) {
-        alert("Preencha todos os campos corretamente!");
-        return;
-    }
+            const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+            if (!newName || !nameRegex.test(newName) || !newCategory || isNaN(newQuantity) || newQuantity <= 0 || isNaN(newPrice) || newPrice <= 0) {
+                alert("Preencha todos os campos corretamente!");
+                return;
+            }
 
-    // Confirmação antes de salvar
-    const confirmSave = confirm("Tem certeza que deseja alterar este artigo?");
-    if (!confirmSave) return;
+            const confirmSave = confirm("Tem certeza que deseja alterar este artigo?");
+            if (!confirmSave) return;
 
-    await updateArticle(article.id, {
-        name: newName,
-        quantity: newQuantity,
-        price: newPrice,
-        category: newCategory
-    });
-};
+            await updateArticle(article.id, {
+                name: newName,
+                quantity: newQuantity,
+                price: newPrice,
+                category: newCategory
+            });
+        };
 
-// === Remover ===
-deleteBtn.onclick = async () => {
-    // Confirmação antes de excluir
-    const confirmDelete = confirm("Tem certeza que deseja excluir este artigo?");
-    if (!confirmDelete) return;
+        // === Remover ===
+        deleteBtn.onclick = async () => {
+            const confirmDelete = confirm("Tem certeza que deseja excluir este artigo?");
+            if (!confirmDelete) return;
 
-    await deleteArticle(article.id);
-};
-
-
-   // === Remover ===
-deleteBtn.onclick = async () => {
-    // Confirmação antes de excluir
-    const confirmDelete = confirm("Tem certeza que deseja excluir este artigo?");
-    if (!confirmDelete) return;
-
-    await deleteArticle(article.id);
-};
+            await deleteArticle(article.id);
+        };
     });
 
     logFormattedArticles("📋 Lista atualizada:");
