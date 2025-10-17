@@ -8,12 +8,33 @@ const quantityInput = document.getElementById("article-quantity");
 
 let articles = [];
 
-// Formata número em moeda alemã
+// === LOG INICIAL ===
+console.log("🟢 Página carregada. Lista inicial de artigos:");
+console.table(articles);
+
+// === FUNÇÕES DE FORMATAÇÃO ===
 function formatCurrency(value) {
     return Number(value).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 }
 
-// Máscara de moeda em tempo real
+function formatQuantity(value) {
+    return Number(value).toLocaleString('de-DE');
+}
+
+// === FUNÇÃO AUXILIAR: MOSTRA OS ARTIGOS FORMATADOS NO CONSOLE ===
+function logFormattedArticles(message) {
+    console.log(message);
+    const formatted = articles.map((a, i) => ({
+        "#": i,
+        Nome: a.name,
+        Quantidade: formatQuantity(a.quantity),
+        Preço: formatCurrency(a.price),
+        Categoria: a.category
+    }));
+    console.table(formatted);
+}
+
+// === MÁSCARAS ===
 function maskCurrencyInput(input) {
     input.addEventListener("input", (e) => {
         let value = e.target.value.replace(/\D/g, '');
@@ -24,14 +45,12 @@ function maskCurrencyInput(input) {
     });
 }
 
-// Máscara de texto para aceitar apenas letras e espaços
 function maskTextInput(input) {
     input.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
     });
 }
 
-// Máscara de número inteiro com separador de milhar (pontos)
 function maskIntegerInput(input) {
     input.addEventListener("input", (e) => {
         let cursorPosition = e.target.selectionStart;
@@ -40,18 +59,38 @@ function maskIntegerInput(input) {
             e.target.value = "";
             return;
         }
-        const formattedValue = Number(value).toLocaleString('de-DE'); // ponto como separador
+        const formattedValue = Number(value).toLocaleString('de-DE');
         e.target.value = formattedValue;
         e.target.selectionStart = e.target.selectionEnd = cursorPosition + (formattedValue.length - value.length);
     });
 }
 
-// Aplica máscaras aos inputs principais
+// === APLICA MÁSCARAS ===
 maskCurrencyInput(priceInput);
 maskTextInput(nameInput);
 maskIntegerInput(quantityInput);
 
-// Renderiza lista de artigos
+// === UTILITÁRIO PARA EDIÇÃO ===
+function applyMasksToEditInputs(editDiv) {
+    const editPriceInput = editDiv.querySelector(".edit-price");
+    const editNameInput = editDiv.querySelector(".edit-name");
+    const editQuantityInput = editDiv.querySelector(".edit-quantity");
+
+    if (editPriceInput && !editPriceInput.dataset.masked) {
+        maskCurrencyInput(editPriceInput);
+        editPriceInput.dataset.masked = true;
+    }
+    if (editNameInput && !editNameInput.dataset.masked) {
+        maskTextInput(editNameInput);
+        editNameInput.dataset.masked = true;
+    }
+    if (editQuantityInput && !editQuantityInput.dataset.masked) {
+        maskIntegerInput(editQuantityInput);
+        editQuantityInput.dataset.masked = true;
+    }
+}
+
+// === RENDERIZA LISTA ===
 function renderArticles() {
     resultList.innerHTML = "";
 
@@ -63,7 +102,7 @@ function renderArticles() {
         displayDiv.classList.add("display-div");
         displayDiv.innerHTML = `
             <p>${article.name}</p>
-            <p>${article.quantity.toLocaleString('de-DE')}</p>
+            <p>${formatQuantity(article.quantity)}</p>
             <p>${formatCurrency(article.price)}</p>
             <p>${article.category}</p>
         `;
@@ -73,7 +112,7 @@ function renderArticles() {
         editDiv.style.display = "none";
         editDiv.innerHTML = `
             <input type="text" value="${article.name}" class="edit-name">
-            <input type="text" value="${article.quantity.toLocaleString('de-DE')}" class="edit-quantity">
+            <input type="text" value="${formatQuantity(article.quantity)}" class="edit-quantity">
             <input type="text" value="${formatCurrency(article.price)}" class="edit-price">
             <select class="edit-category">
                 <option value="Drinks" ${article.category === "Drinks" ? "selected" : ""}>Drinks</option>
@@ -97,22 +136,12 @@ function renderArticles() {
         li.appendChild(buttonDiv);
         resultList.appendChild(li);
 
-         displayDiv.addEventListener("click",() => {
-                console.log("click")
-
-                buttonDiv.classList.toggle("active")
-                displayDiv.setAttribute("tabindex", "0");
-
-
-
-            })
-
         const editBtn = buttonDiv.querySelector(".edit-btn");
         const deleteBtn = buttonDiv.querySelector(".delete-btn");
         const saveBtn = buttonDiv.querySelector(".save-btn");
         const cancelBtn = buttonDiv.querySelector(".cancel-btn");
 
-        // Editar
+        // === Editar ===
         editBtn.onclick = () => {
             displayDiv.style.display = "none";
             editDiv.style.display = "flex";
@@ -120,42 +149,21 @@ function renderArticles() {
             deleteBtn.style.display = "none";
             saveBtn.style.display = "inline-block";
             cancelBtn.style.display = "inline-block";
-
-            const editPriceInput = editDiv.querySelector(".edit-price");
-            const editNameInput = editDiv.querySelector(".edit-name");
-            const editQuantityInput = editDiv.querySelector(".edit-quantity");
-
-            // Aplica a mesma máscara de todos os inputs
-            maskCurrencyInput(editPriceInput);
-            maskTextInput(editNameInput);
-            maskIntegerInput(editQuantityInput);
-
-
-           
+            applyMasksToEditInputs(editDiv);
         };
 
-        // Cancelar
+        // === Cancelar ===
         cancelBtn.onclick = () => {
-
-          // Oculta a edição
-    editDiv.style.display = "none";
-
-    // Mostra novamente o display original
-    displayDiv.style.display = "grid";
-
-    // Esconde os botões de salvar/cancelar
-    saveBtn.style.display = "none";
-    cancelBtn.style.display = "none";
-
-    // Mostra os botões principais do item (Editar/Remover)
-    editBtn.style.display = "inline-block";
-    deleteBtn.style.display = "inline-block";
-
-    // Remove a classe active caso os botões estejam toggleados
-    buttonDiv.classList.remove("active");
+            editDiv.style.display = "none";
+            displayDiv.style.display = "grid";
+            saveBtn.style.display = "none";
+            cancelBtn.style.display = "none";
+            editBtn.style.display = "inline-block";
+            deleteBtn.style.display = "inline-block";
+            buttonDiv.classList.remove("active");
         };
 
-        // Salvar
+        // === Salvar ===
         saveBtn.onclick = () => {
             const newName = editDiv.querySelector(".edit-name").value.trim();
             let newQuantity = editDiv.querySelector(".edit-quantity").value.replace(/\./g, '');
@@ -172,25 +180,23 @@ function renderArticles() {
                 return;
             }
 
-            articles[index] = {
-                name: newName,
-                quantity: newQuantity,
-                price: newPrice,
-                category: newCategory
-            };
+            articles[index] = { name: newName, quantity: newQuantity, price: newPrice, category: newCategory };
 
+            logFormattedArticles(`✏️ Artigo #${index} atualizado:`);
             renderArticles();
         };
 
-        // Remover
+        // === Remover ===
         deleteBtn.onclick = () => {
+            console.log(`🗑️ Artigo removido:`, articles[index]);
             articles.splice(index, 1);
+            logFormattedArticles("📋 Lista após remoção:");
             renderArticles();
         };
     });
 }
 
-// Adicionar artigo
+// === Adicionar artigo ===
 btnAdd.onclick = () => {
     const name = nameInput.value.trim();
     let quantity = quantityInput.value.replace(/\./g, '');
@@ -209,17 +215,11 @@ btnAdd.onclick = () => {
 
     articles.push({ name, quantity, price, category });
 
-    // Limpar formulário
+    logFormattedArticles("✅ Artigo adicionado:");
     nameInput.value = "";
     quantityInput.value = "";
     priceInput.value = "";
     document.getElementById("category").value = "";
 
     renderArticles();
-
-
-
-    
 };
-
-
