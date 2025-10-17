@@ -65,7 +65,7 @@ function maskIntegerInput(input) {
     });
 }
 
-// === APLICA MÁSCARAS ===
+// === APLICA MÁSCARAS INICIAIS ===
 maskCurrencyInput(priceInput);
 maskTextInput(nameInput);
 maskIntegerInput(quantityInput);
@@ -140,6 +140,19 @@ function renderArticles() {
         const deleteBtn = buttonDiv.querySelector(".delete-btn");
         const saveBtn = buttonDiv.querySelector(".save-btn");
         const cancelBtn = buttonDiv.querySelector(".cancel-btn");
+
+        // === Clique no item para abrir/fechar menu ===
+        li.onclick = (e) => {
+            if (e.target.tagName === "BUTTON" || e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+
+            const isActive = buttonDiv.classList.contains("active");
+
+            document.querySelectorAll(".button-div").forEach(div => div.classList.remove("active"));
+
+            if (!isActive) {
+                buttonDiv.classList.add("active");
+            }
+        };
 
         // === Editar ===
         editBtn.onclick = () => {
