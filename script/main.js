@@ -101,6 +101,8 @@ function renderArticles() {
                 console.log("click")
 
                 buttonDiv.classList.toggle("active")
+                displayDiv.setAttribute("tabindex", "0");
+
 
 
             })

@@ -255,7 +255,30 @@ select option {
 
 .display-div {
   cursor: pointer;
+  border: 2px solid transparent;
+
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
+
+/* Efeito suave no hover */
+.display-div:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+/* Mantém o efeito quando clicado/focado */
+.display-div:focus,
+.display-div:focus-visible {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  outline: none;
+}
+
+
+
+
+
+
 
 .edit-div {
   & input {
