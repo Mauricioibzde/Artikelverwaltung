@@ -1,0 +1,151 @@
+
+
+
+body {
+  background-color: var(--dark-bg);
+  font-family: var(--font-family);
+  color: var(--text-light);
+  margin: 0;
+  padding: 0;
+  margin: 0 auto;
+}
+
+
+
+span {
+  font-weight: 700;
+  
+}
+
+.app-menu {
+  display: grid;
+  align-items: center;
+  grid-template-rows: max-content;
+  width: 100%;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  height: 100%;
+  gap: 1rem;
+  background-color: var(--dark-card);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+
+
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title img {
+  height: 12rem;
+  border-bottom: solid 1px var(--border);
+}
+
+#help-btn {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+#help-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+
+
+
+
+/* Área do formulário */
+.menu-artikelverwaltung {
+  display: grid;
+  gap: 1rem;
+}
+
+
+
+/* Botões de editar/deletar */
+.edit-delete {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+  height: 1.5rem;
+}
+
+.edit-delete button {
+  width: 2.2rem;
+height: 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark-card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+   transition: all 0.5s ease-in-out;
+  height: 2rem;
+
+}
+
+.edit-delete button:hover {
+  border-color: var(--accent);
+  transform: scale(1.1);
+   transition: all 0.5s ease-in-out;
+}
+
+.edit-delete img {
+  width: 1rem;
+}
+
+/* Scrollable table */
+.scroll-wrapper {
+  max-height: 350px;
+}
+
+#list {
+  max-height: 400px;
+  overflow: auto;
+  border-radius: 0.75rem;
+  background-color: var(--dark-card);
+  border: 1px solid var(--border);
+}
+
+.scroll-wrapper table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--dark-card);
+  color: var(--text-light);
+  z-index: 2;
+  border-bottom: 1px solid var(--border);
+}
+
+.tutorial-step ul li {
+    display: block;
+
+}
+
+

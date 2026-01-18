@@ -1,0 +1,55 @@
+@media (max-width: 1280px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr ;
+        padding: 1rem  6rem;
+
+    }
+
+
+}
+
+
+
+@media (max-width: 768px) {
+
+.edit-div {
+  & input {
+    padding-inline: 0;
+    text-align: center;
+    font-size: .9rem;
+  }
+}
+
+
+
+  ul li .product-detels {
+    display: grid;
+    grid-auto-flow: column;
+   
+  }
+
+
+
+
+  .product-manipution button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+
+    main {
+        padding: 1rem 2rem;
+    }
+
+
+  .product-manipution {
+    padding-inline: 0.5rem;
+  }
+
+  .product-manipution button {
+    font-size: 0.9rem;
+    height: 2.5rem;
+  }
+}

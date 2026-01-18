@@ -1,0 +1,13 @@
+/* Menu Items */
+.menu-items  {
+    display: grid;
+    gap: 1rem;
+
+    div {
+        label {
+            margin-left: 1rem;
+           
+        }
+    }
+
+}

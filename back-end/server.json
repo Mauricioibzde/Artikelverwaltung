@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Produto Exemplo",
+      "category": "Categoria A",
+      "price": 19.99,
+      "quantity": 100
+    },
+    {
+      "id": "40db",
+      "name": "Asus g7",
+      "quantity": "2.240",
+      "price": "1.200,40 ",
+      "category": "Elektronik"
+    },
+    {
+      "id": "57b1",
+      "name": "Asus g9",
+      "quantity": "2.240",
+      "price": "1.200,40 ",
+      "category": "Elektronik"
+    }
+  ]
+}

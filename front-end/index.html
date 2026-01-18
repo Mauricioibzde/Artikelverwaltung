@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikelverwaltung</title>
+    <link rel="stylesheet" href="./style/index.css">
+    <link rel="stylesheet" href="./style/modal.css">
+</head>
+
+<body>
+    <main>
+        <section class="menu-app-content">
+            <div class="app-menu">
+                <div class="title">
+                    <div class="title-content">
+                        <h1>Article Management</h1>
+                        <img src="assets/img/logo.png" alt="">
+                    </div>
+                    <button id="help-btn" title="Help / Tutorial">?</button>
+                </div>
+
+                <form id="article-form">
+    <div class="menu-items">
+
+        <div>
+                        <label for="article-name">Article Name</label>
+                        <div class="input-icon">
+                            <span class="icon">
+                                <!-- Heroicons: Document -->
+                                <svg width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg>
+                            </span>
+                            <input id="article-name" name="articleName" type="text" placeholder="Enter here">
+                        </div>
+                    </div>
+        <div>
+                        <label for="article-quantity">Quantity</label>
+                        <div class="input-icon">
+                            <span class="icon">
+                                <!-- Feather: Box -->
+                                <svg width="20" height="20" fill="none" stroke="#7c5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 7V5a3 3 0 0 1 6 0v2"/></svg>
+                            </span>
+                            <input id="article-quantity" name="quantity" type="number" placeholder="0" min="0" step="any">
+                        </div>
+        </div>
+
+        <div>
+                        <label for="amount-price">Article Price</label>
+                        <div class="input-icon">
+                            <span class="icon">
+                                <!-- Heroicons: Currency Euro -->
+                                <svg width="20" height="20" fill="none" stroke="#7c5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 5.1A7 7 0 1 0 17 18.9M7 10h8M7 14h8"/></svg>
+                            </span>
+                            <input id="amount-price" name="price" type="text" placeholder="0.00 ">
+                        </div>
+        </div>
+
+        <!-- Custom Select Example -->
+        <div>
+                        <label for="custom-category">Category</label>
+                        <div class="custom-select input-icon" id="custom-select-category">
+                                <span class="icon">
+                                    <!-- Heroicons: Tag -->
+                                    <svg width="20" height="20" fill="none" stroke="#7c5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/></svg>
+                                </span>
+                                <div class="custom-select-selected">Select category</div>
+                                <div class="custom-select-items"></div>
+                        </div>
+        </div>
+        
+            
+           
+                
+            </select>
+        </div>
+        <button id="btnAdd">Add</button>
+
+        
+    </div>
+</form>
+                
+            </div>
+        </section>
+
+        <section class="liste-of-the-article">
+            <div class="resulte-of-the-liste">
+                <div class="product-detels-title">
+                    <p>Product</p>
+                    <p>Quantity</p>
+                    <p>Price</p>
+                    <p>Category</p>
+                </div>
+
+                <ul id="result-to-print">
+         
+                </ul>
+                <div class="some">
+                    <p>Total Articles: <span id="total-articles">0</span></p>
+                    <p>Total Price: <span id="total-price">€ 0.00</span></p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>
+                Created by <strong>Mauricio Farias da Silva</strong> ©
+                <span id="year"></span>
+            </p>
+            <p class="app-info">Manage your inventory easily and quickly 🚀</p>
+        </footer>
+
+    <!-- Modal de edição de artigo -->
+    <div id="edit-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2>Editar Artigo</h2>
+            <form id="edit-article-form">
+                <label>Nome</label>
+                <input type="text" id="edit-name" required>
+                <label>Quantidade</label>
+                <input type="number" id="edit-quantity" min="0" step="any" required>
+                <label>Preço</label>
+                <input type="number" id="edit-price" min="0" step="any" required>
+                <label>Categoria</label>
+                <input type="text" id="edit-category" required>
+                <button type="submit">Salvar</button>
+                <button type="button" id="cancel-edit">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Segurança (Senha) -->
+    <div id="security-modal" class="modal" style="display:none;">
+        <div class="modal-content modal-security-content">
+            <span class="close" id="close-security-modal">&times;</span>
+            <h2 class="modal-security-title">🔒 Acesso Restrito</h2>
+            <p class="modal-security-text">Digite a senha de administrador para continuar.</p>
+            <input type="password" id="admin-password" placeholder="Senha" class="modal-security-input">
+            <div class="modal-security-actions">
+                <button id="confirm-security">Confirmar</button>
+                <button id="cancel-security" style="background: transparent; border: 1px solid var(--accent); color: var(--text-light);">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <div id="tutorial-modal" class="modal" style="display:none;">
+        <div class="modal-content modal-tutorial-content">
+            <span class="close" id="close-tutorial-modal">&times;</span>
+            <h2 class="tutorial-title">📖 How to Use</h2>
+            
+            <div class="tutorial-step">
+                <h3>1. Add New Article</h3>
+                <p>Fill in the name, quantity, price, and category in the top form and click <strong>Add</strong>.</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h3>2. Manage Articles</h3>
+                <p><strong>Click on any item</strong> in the list to reveal options:</p>
+                <ul>
+                    <li>✏️ <strong>Edit</strong>: Modify product details.</li>
+                    <li>🗑️ <strong>Delete</strong>: Remove product from stock.</li>
+                    <li>ℹ️ <strong>Details</strong>: View added date & unit price.</li>
+                </ul>
+            </div>
+
+            <div class="tutorial-step">
+                <h3>🔒 Security</h3>
+                <p>Editing or deleting requires the admin password: <code>admin123</code></p>
+            </div>
+
+            <div class="tutorial-actions">
+                <button id="got-it-btn">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    </main>
+<script type="module" src="script/main.js"></script></body>
+</html>

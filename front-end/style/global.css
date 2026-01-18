@@ -1,0 +1,167 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  -webkit-text-size-adjust: 100%; /* evita zoom automático em inputs iOS */
+  touch-action: manipulation;     /* desativa zoom duplo em botões/links */
+}
+
+
+body {
+    display: grid;
+    margin: 0 auto;
+    height: 100vh;
+    background-image: url(../assets/img/9.jpg);
+    background-position: center;
+    background-size: cover;
+  background: none; /* sem imagem direta */
+  position: relative;
+  
+    
+  
+ 
+
+}
+
+
+
+
+
+
+
+
+select {
+  & option {
+    width: max-content;
+  }
+}
+
+
+/* Main como grid vertical */
+main {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1.4fr 2.3fr;
+    height: 100dvh;
+    grid-template-rows: auto;
+    grid-template-rows: 2.5fr auto; 
+    padding: 2rem 3rem ;
+    gap: 1rem;
+   
+}
+
+
+
+
+
+.menu-items {
+  & span {
+    position: relative;
+    left: 2rem;
+  }
+}
+
+
+
+
+/***/
+
+
+
+
+/* Options transparentes */
+select option {
+  background-color: rgba(0, 0, 0, 0.975); /* fundo semi-transparente */
+  color: white;
+  padding: 0.5rem;
+
+}
+
+
+#btnAdd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .2rem;
+  justify-self: center;
+  width: 10rem;
+  height: 2rem;
+  background-color: var(--task-btn);
+   border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: var( --text-light);
+  margin-top: 2rem;
+  & span {
+  
+   padding: .5rem 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+  }
+
+   }
+
+   #btnAdd:hover {
+ 
+    transform: scale(1.05);
+    color: white;
+     transition: all 0.5s ease-in-out;
+   }  
+
+
+   .button-div {
+  
+    gap: 10px;
+}
+
+.button-div {
+    display: none; /* mostra quando clicado */
+}
+
+.button-div.active {
+    display: flex; /* mostra quando clicado */
+}
+
+.display-div {
+  cursor: pointer;
+  border: 2px solid transparent;
+
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* Efeito suave no hover */
+.display-div:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+/* Mantém o efeito quando clicado/focado */
+.display-div:focus,
+.display-div:focus-visible {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

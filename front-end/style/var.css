@@ -1,0 +1,26 @@
+:root {
+  /* Paleta minimalista escura */
+  --dark-bg: #0d1117;           /* Fundo principal */
+  --dark-card: #161b22;         /* Fundo de cards e menus */
+  --text-light: #c9d1d9;        /* Texto claro */
+  --text-muted: #8b949e;        /* Texto secundário */
+  --accent: #58a6ff;    
+  --accent-soft: #58a6ff96;
+  --text-light: #ffffff;        /* Cor de destaque */
+  --accent-hover: #1f6feb;      /* Hover do destaque */
+  --border: #30363d;  
+  --border-light: #fefefe;
+            /* Bordas sutis */
+  --font-family: "Nunito", sans-serif; 
+--task-background: #273542; 
+--task-background-hover: #30363d; 
+--display-list-edit-btn: #729bd5;
+     
+
+     --task-btn: #391a34; 
+
+
+
+   
+
+}
