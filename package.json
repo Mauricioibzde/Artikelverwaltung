@@ -1,7 +1,7 @@
 {
   "name": "artikelverwaltung",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "back-end/api.js",
   "scripts": {
     "server": "json-server --watch back-end/server.json --port 3000",
     "start": "node back-end/api.js"
