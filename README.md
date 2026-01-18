@@ -1,5 +1,7 @@
 # 📦 Article Management System (Artikelverwaltung)
 
+![Project Illustration](front-end/assets/img/ilustration.png)
+
 This is a complete guide on how to install, run, and use the inventory management system.
 
 ## 🚀 How to Start the Project

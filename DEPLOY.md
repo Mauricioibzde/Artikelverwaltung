@@ -41,5 +41,16 @@ git push -u origin main
 O Render vai começar a instalar e "deployar". Em alguns minutos, ele te dará uma URL (ex: `https://artikelverwaltung.onrender.com`).
 Esse é o link que você pode enviar para seus amigos! 🎉
 
+## 4. Configurar Permissão do Banco de Dados (Importante!)
+Se aparecer um erro de `SSL alert` ou `MongoNetworkError` no Render, é porque o MongoDB Atlas bloqueou o acesso do servidor. Para corrigir:
+
+1. Acesse seu painel no [MongoDB Atlas](https://cloud.mongodb.com/).
+2. No menu lateral, clique em **Network Access** (em "Security").
+3. Clique no botão **+ Add IP Address**.
+4. Clique em **Allow Access from Anywhere** (Isso preenche `0.0.0.0/0`).
+5. Clique em **Confirm**.
+
+O Render usa IPs dinâmicos, então essa configuração é necessária para ele conseguir conectar no seu banco.
+
 ## Observação sobre o Banco de Dados
 Como você está usando o **MongoDB Atlas** (na nuvem), ele vai funcionar perfeitamente tanto no seu computador local quanto no Render. Não precisa mudar nada!
