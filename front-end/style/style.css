@@ -144,7 +144,11 @@ height: 1.5rem;
 }
 
 .tutorial-step ul li {
-    display: block;
+    padding-inline: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
 
 }
 
