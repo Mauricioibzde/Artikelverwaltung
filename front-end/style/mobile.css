@@ -6,6 +6,10 @@
 
     }
 
+  .title-content {
+   flex-direction: column!important;
+    gap: 10px;
+}
 
 }
 
@@ -40,7 +44,7 @@
 @media (max-width: 480px) {
 
     main {
-        padding: 1rem 2rem;
+        padding: 1rem .5rem;
     }
 
 
@@ -52,4 +56,34 @@
     font-size: 0.9rem;
     height: 2.5rem;
   }
+
+  #result-to-print {
+    & p {
+      font-size: 0.6rem;
+     }
+  }
+
+
+  .product-detels-title p {
+  
+    padding-block: 0;
+   font-size: 0.9rem;
 }
+
+
+.article-meta-info {
+
+  & span {
+    font-size: 0.6rem;
+
+  }
+}
+
+.some {
+  & p {
+    font-size: 0.7rem;
+}
+
+}
+}
+
