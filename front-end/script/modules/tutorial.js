@@ -22,8 +22,7 @@ export function initTutorial() {
         modal.style.display = 'none';
         localStorage.setItem(TUTORIAL_SEEN_KEY, 'true'); // Mark as seen
         
-        // Force viewport reset to prevent zoom issues
-        document.body.style.zoom = 1;
+        // Force scroll reset to top
         window.scrollTo(0, 0);
     };
 
