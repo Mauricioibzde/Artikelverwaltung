@@ -21,6 +21,10 @@ export function initTutorial() {
     const closeModal = () => {
         modal.style.display = 'none';
         localStorage.setItem(TUTORIAL_SEEN_KEY, 'true'); // Mark as seen
+        
+        // Force viewport reset to prevent zoom issues
+        document.body.style.zoom = 1;
+        window.scrollTo(0, 0);
     };
 
     closeBtn.addEventListener('click', closeModal);

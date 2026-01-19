@@ -72,7 +72,9 @@
 /* Security Modal Styles */
 .modal-security-content {
   max-width: 400px;
+  width: 90%;
   text-align: center;
+  margin: auto;
 }
 
 .modal-security-title {
@@ -86,6 +88,14 @@
 
 .modal-security-input {
   text-align: center;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--accent, #7c5cff);
+  background: var(--dark-card, #232336);
+  color: var(--text-light, #fff);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .modal-security-actions {
@@ -95,9 +105,28 @@
   margin-top: 15px;
 }
 
+.modal-security-actions button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  border: 1px solid var(--accent, #7c5cff);
+  color: var(--text-light, #fff);
+}
+
+.modal-security-actions button:hover {
+  background: var(--accent, #7c5cff);
+  color: #fff;
+  box-shadow: 0 0 10px var(--accent-soft);
+}
+
 /* Tutorial Modal Styles */
 .modal-tutorial-content {
   max-width: 600px;
+  width: 90%;
+  margin: auto;
 }
 
 .tutorial-title {
