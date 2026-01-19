@@ -85,5 +85,16 @@
 }
 
 }
+
+
+.article-meta-info {
+ 
+    gap: .4rem;
+  
+}
+
+.display-edit-delete.active {
+    padding: 0 .8rem 0 0!important;
+}
 }
 

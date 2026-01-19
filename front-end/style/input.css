@@ -126,21 +126,21 @@ button:active {
     display: none;
     position: relative;
     top: .3rem;
-    grid-column: span 4; /* Garante que ocupe a largura total dentro do grid se necessário */
+    grid-column: span 4; 
 }
 
 .display-edit-delete.active {
     width: 100%; 
     display: flex;
     align-items: center; 
-    justify-content: space-between; /* Separa os grupos (botões na esq, info na dir) */
+    justify-content: space-between; 
     padding: 0 1rem;
 }
 
-/* Container dos botões para garantir que fiquem juntos */
+
 .display-edit-delete > div:first-child {
     display: flex;
-    gap: 1rem;
+   
 }
 
 .edit-btn {
