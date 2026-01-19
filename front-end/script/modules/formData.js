@@ -16,11 +16,11 @@ import { getSelectedCategory } from '../modules/customSelect.js';
 		const categoria = getSelectedCategory();
 
         if (!nome || !quantidade || !preco || categoria === 'Select category') {
-            alert('Por favor, preencha todos os campos!');
+            alert('Please fill in all fields!');
             return;
         }
 
-       // Envia os dados para a API REST criada no back-end
+       // Send data to the REST API created in the backend
        await fetch('/api/products', {
             method: 'POST',
             headers: {
@@ -28,18 +28,18 @@ import { getSelectedCategory } from '../modules/customSelect.js';
             },
             body: JSON.stringify({
                 name: nome,
-                quantity: parseFloat(quantidade.replace(/\./g, '').replace(',', '.')), // converte para número
-                price: parseFloat(preco.replace(/\./g, '').replace(',', '.')), // converte para número
+                quantity: parseFloat(quantidade.replace(/\./g, '').replace(',', '.')), // convert to number
+                price: parseFloat(preco.replace(/\./g, '').replace(',', '.')), // convert to number
                 category: categoria
             })
         })
         .then(response => response.json())
         .then(data => {
-            alert('Artigo cadastrado com sucesso!');
+            alert('Article registered successfully!');
             console.log('Success:', data);
         })
         .catch((error) => {
-            alert('Erro ao cadastrar artigo.');
+            alert('Error registering article.');
             console.error('Error:', error);
         });
         

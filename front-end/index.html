@@ -132,40 +132,40 @@
             <p class="app-info">Manage your inventory easily and quickly 🚀</p>
         </footer>
 
-        <!-- Modal de edição de artigo -->
+        <!-- Edit Article Modal -->
         <div id="edit-modal" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close" id="close-modal">&times;</span>
-                <h2>Editar Artigo</h2>
+                <h2>Edit Article</h2>
                 <form id="edit-article-form">
-                    <label>Nome</label>
+                    <label>Name</label>
                     <input type="text" id="edit-name" required>
-                    <label>Quantidade</label>
+                    <label>Quantity</label>
                     <input type="number" id="edit-quantity" min="0" step="any" required>
-                    <label>Preço</label>
+                    <label>Price</label>
                     <input type="number" id="edit-price" min="0" step="any" required>
-                    <label>Categoria</label>
+                    <label>Category</label>
                     <input type="text" id="edit-category" required>
-                    <button type="submit">Salvar</button>
-                    <button type="button" id="cancel-edit">Cancelar</button>
+                    <button type="submit">Save</button>
+                    <button type="button" id="cancel-edit">Cancel</button>
                 </form>
             </div>
         </div>
 
-        <!-- Modal de Segurança (Senha) -->
+        <!-- Security Modal (Password) -->
         <div id="security-modal" class="modal" style="display:none;">
             <div class="modal-content modal-security-content">
                 <span class="close" id="close-security-modal">&times;</span>
                 <h2 class="modal-security-title"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
 </svg>
- Acesso Restrito</h2>
-                <p class="modal-security-text">Digite a senha de administrador para continuar.</p>
-                <input type="password" id="admin-password" placeholder="Senha" class="modal-security-input">
+ Restricted Access</h2>
+                <p class="modal-security-text">Enter the administrator password to continue.</p>
+                <input type="password" id="admin-password" placeholder="Password" class="modal-security-input">
                 <div class="modal-security-actions">
-                    <button id="confirm-security">Confirmar</button>
+                    <button id="confirm-security">Confirm</button>
                     <button id="cancel-security"
-                        style="background: transparent; border: 1px solid var(--accent); color: var(--text-light);">Cancelar</button>
+                        style="background: transparent; border: 1px solid var(--accent); color: var(--text-light);">Cancel</button>
                 </div>
             </div>
         </div>

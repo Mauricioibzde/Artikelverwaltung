@@ -1,7 +1,7 @@
-// Variável de estado (removida a persistência automática para pedir senha sempre)
+// State variable (automatic persistence removed to always ask for password)
 // let isAdminLoggedIn = false; 
 
-// Função auxiliar para pedir senha
+// Helper function to request password
 function checkPermission() {
     return new Promise((resolve) => {
         // Removida verificação de sessão anterior
@@ -18,14 +18,14 @@ function checkPermission() {
         input.focus();
 
         const handleConfirm = () => {
-             // SENHA MESTRA DEFINIDA AQUI (Ex: "admin123")
+             // MASTER PASSWORD DEFINED HERE (Ex: "admin123")
             if (input.value === 'admin123') {
                 // isAdminLoggedIn = true; // Não salva mais na sessão
                 modal.style.display = 'none';
                 cleanup();
                 resolve(true);
             } else {
-                alert('Senha incorreta!');
+                alert('Incorrect password!');
                 input.value = '';
                 input.focus();
             }
@@ -48,7 +48,7 @@ function checkPermission() {
         cancelBtn.addEventListener('click', handleCancel);
         closeBtn.addEventListener('click', handleCancel);
         
-        // Pressionar Enter para confirmar
+        // Press Enter to confirm
         input.onkeydown = (e) => {
             if(e.key === 'Enter') handleConfirm();
             if(e.key === 'Escape') handleCancel();
@@ -64,26 +64,26 @@ export async function loadArticles() {
     const response = await fetch('/api/products');
     const articles = await response.json();
     if (articles.length === 0) {
-      ul.innerHTML = '<li><p>Nenhum artigo cadastrado.</p></li>';
+      ul.innerHTML = '<li><p>No articles registered.</p></li>';
       return;
     }
     let totalQuantity = 0;
     let totalPrice = 0;
 
     articles.forEach(article => {
-      // Ignora artigos inválidos (sem nome ou com dados corrompidos)
+      // Ignore invalid articles (without name or corrupted data)
       if (!article.name || article.name === 'null' || !article.price) return;
 
-      // Formata data e hora
+      // Format date and time
       const addedDate = article.date ? new Date(article.date) : new Date();
-      const dateStr = addedDate.toLocaleDateString('pt-BR'); // ou 'de-DE'
-      const timeStr = addedDate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      const dateStr = addedDate.toLocaleDateString('en-US'); // or 'de-DE'
+      const timeStr = addedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
-      // Calcula o total desta linha (Preço Unitário * Quantidade)
+      // Calculate the total for this line (Unit Price * Quantity)
       const lineTotal = article.price * article.quantity;
 
-      totalQuantity += 1; // Contagem de artigos (linhas)
-      totalPrice += lineTotal; // Soma do valor total de estoque
+      totalQuantity += 1; // Count of articles (rows)
+      totalPrice += lineTotal; // Sum of total stock value
     
       const li = document.createElement('li');
       
@@ -95,8 +95,8 @@ export async function loadArticles() {
         <p>${article.category}</p>
          <div class="display-edit-delete">
              <div>
-                <button class="edit-btn" title="Editar"></button>
-                <button class="delete-btn" title="Excluir"></button>
+                <button class="edit-btn" title="Edit"></button>
+                <button class="delete-btn" title="Delete"></button>
              </div>
              <div class="article-meta-info">
                  <span>${dateStr}</span>
@@ -109,9 +109,9 @@ export async function loadArticles() {
       // Adiciona o li à lista na tela
       ul.appendChild(li);
 
-      // Evento para mostrar/esconder os botões ao clicar na linha
+      // Event to show/hide buttons when clicking on the row
       li.addEventListener('click', (e) => {
-        // Não fecha se clicar nos próprios botões
+        // Don't close if clicking on the buttons themselves
         if (e.target.closest('button')) return;
         
         li.classList.toggle('selected');
@@ -119,14 +119,14 @@ export async function loadArticles() {
         actionDiv.classList.toggle('active');
       });
 
-      // Configura o botão de Excluir
+      // Configure the Delete button
       li.querySelector('.delete-btn').addEventListener('click', async (e) => {
-        e.stopPropagation(); // Evita acionar o click do li
+        e.stopPropagation(); // Prevent triggering the li click
 
         const hasPermission = await checkPermission();
         if (!hasPermission) return;
 
-        if(confirm(`Deseja realmente excluir o artigo "${article.name}"?`)) {
+        if(confirm(`Are you sure you want to delete the article "${article.name}"?`)) {
             await fetch(`/api/products/${encodeURIComponent(article.name)}`, {
             method: 'DELETE'
             });
@@ -134,23 +134,23 @@ export async function loadArticles() {
         }
       });
 
-      // Configura o botão de Editar
+      // Configure the Edit button
       li.querySelector('.edit-btn').addEventListener('click', async (e) => {
-        e.stopPropagation(); // Evita acionar o click do li
+        e.stopPropagation(); // Prevent triggering the li click
 
         const hasPermission = await checkPermission();
         if (!hasPermission) return;
 
-        // Abrir modal de edição
+        // Open edit modal
         const modal = document.getElementById('edit-modal');
         modal.style.display = 'flex';
-        // Preencher campos
+        // Fill in fields
         document.getElementById('edit-name').value = article.name;
         document.getElementById('edit-quantity').value = article.quantity;
         document.getElementById('edit-price').value = article.price;
         document.getElementById('edit-category').value = article.category;
 
-        // Salvar edição
+        // Save edit
         const editForm = document.getElementById('edit-article-form');
         editForm.onsubmit = async function(e) {
           e.preventDefault();
@@ -158,7 +158,7 @@ export async function loadArticles() {
           const newQuantity = parseFloat(document.getElementById('edit-quantity').value);
           const newPrice = parseFloat(document.getElementById('edit-price').value);
           const newCategory = document.getElementById('edit-category').value;
-          // Atualiza todos os campos do artigo
+          // Update all article fields
           await fetch(`/api/products/${encodeURIComponent(article.name)}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -167,7 +167,7 @@ export async function loadArticles() {
           modal.style.display = 'none';
           await loadArticles();
         };
-        // Cancelar edição
+        // Cancel edit
         document.getElementById('cancel-edit').onclick = function() {
           modal.style.display = 'none';
         };
@@ -177,17 +177,17 @@ export async function loadArticles() {
       });
     });
 
-    // Atualiza totais na tela
+    // Update totals on screen
     document.getElementById('total-articles').textContent = totalQuantity;
     document.getElementById('total-price').textContent = '€ ' + totalPrice.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   } catch (err) {
-    ul.innerHTML = '<li><p>Erro ao carregar artigos.</p></li>';
+    ul.innerHTML = '<li><p>Error loading articles.</p></li>';
     console.error(err);
   }
 }
 
-// Carrega os artigos ao abrir a página
+// Load articles when opening the page
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', loadArticles);
 } else {
